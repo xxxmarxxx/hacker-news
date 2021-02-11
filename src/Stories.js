@@ -3,7 +3,7 @@ import React from "react";
 import { useGlobalContext } from "./context";
 
 const Stories = () => {
-  const { isLoading, hits } = useGlobalContext();
+  const { isLoading, hits, removeStory } = useGlobalContext();
   // console.log(isLoading);
   if (isLoading) {
     return <div className="loading"></div>;
@@ -16,13 +16,14 @@ const Stories = () => {
           <article key={objectID} className="story">
             <h4 className="title">{title}</h4>
             <p className="info">
-              {points} points by <span>{author} | </span> {num_comments}{' '} comments
+              {points} points by <span>{author} | </span> {num_comments}{" "}
+              comments
             </p>
             <div>
-              <a href={url} className="read-link" target='_blank'>
+              <a href={url} className="read-link" target="_blank">
                 read me
               </a>
-              <button className="remove-btn">remove</button>
+              <button className="remove-btn" onClick={()=>removeStory(objectID)}>remove</button>
             </div>
           </article>
         );
